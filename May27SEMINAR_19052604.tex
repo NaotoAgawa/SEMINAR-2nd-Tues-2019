@@ -1,0 +1,2025 @@
+
+\documentclass[dvipdfmx,10pt,notheorems]{beamer}
+
+\usepackage{amsmath,amsfonts,amsthm,amssymb,amscd}
+\usepackage[all]{xy}
+\def\objectstyle{\displaystyle}
+
+\usepackage{mathrsfs}
+
+%for inserting pictures
+\usepackage{graphicx}
+
+\usepackage{atbegshi,amsmath,amssymb}
+
+%for inserting diagrams with loops
+\usepackage{mathtools}
+
+%for inserting an image of the Universe on the backside of the slide
+\usepackage{wallpaper}
+
+\AtBeginShipoutFirst{\special{pdf:tounicode EUC-UCS2}}
+%\AtBeginShipoutFirst{\special{pdf:tounicode 90ms-RKSJ-UCS2}}
+\usepackage{minijs}
+% \usepackage{otf}
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usetheme{Berkeley}
+% to let the row a little small at the first slide
+\makeatletter
+\beamer@headheight=1.5\baselineskip
+\makeatother
+\setbeamertemplate{navigation symbols}{}
+
+\def\languagename{ja}
+\deftranslation[to=ja]{theorem}{定理}
+\deftranslation[to=ja]{algorithm}{アルゴリズム}
+
+\def\proofname{\bf Proof}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{attention}[theorem]{Attention}
+\newtheorem{counterexample}[theorem]{Counterexample}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{examples}[theorem]{例}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{problem}[theorem]{問題}
+\newtheorem{given}[theorem]{仮定}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{examplequestion}[theorem]{例題}
+
+
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+% for Fonts (extra)
+\usepackage{txfonts}
+
+\usepackage{listings}
+%\newcommand{\qed}{\hbox{\rule{6pt}{6pt}}}
+\newcommand{\mono}{\rightarrowtail}
+\newcommand{\epi}{\twoheadrightarrow}
+\renewcommand{\#}{^\sharp}
+\newcommand{\dom}{\mbox{\rm dom}}
+%\newcommand{\mod}{\mbox{\rm mod}}
+% \newcommand{\mod}{\mbox{\ mod\ }}
+\renewcommand{\Im}{\mbox{\rm Im}}
+\newcommand{\Pfn}{\mbox{\bf Pfn}}
+%\newcommand{\Rel}{\mbox{\bf Rel}}
+%\newcommand{\Set}{\mbox{\bf Set}}
+\newcommand{\FSet}{\mbox{\bf FSet}}
+\newcommand{\Vect}{\mbox{\bf Vect}}
+\newcommand{\Poset}{\mbox{\bf Poset}}
+\newcommand{\coeq}{\mbox{\rm coeq}}
+\newcommand{\eq}{\mbox{\rm eq}}
+\newcommand{\rel}{\rightharpoondown}
+\newcommand{\id}{\mbox{id}}
+%
+\newcommand{\Graph}{\mbox{\bf Graph}}
+\newcommand{\G}{\mbox{\bf G}}
+\newcommand{\C}{\mbox{\cal C}}
+\newcommand{\E}{\mbox{\bf E}}
+\newcommand{\M}{\mbox{\bf M}}
+\newcommand{\Obj}{\mbox{\cal Obj}}
+\newcommand{\Mor}{\mbox{\cal Mor}}
+\newcommand{\Dyn}{\mbox{\bf Dyn}}
+\newcommand{\Mach}{\mbox{\bf Mach}}
+%
+\newtheorem{defi}{{\bf 定義}}
+\newtheorem{prop}{{\bf 命題}}
+\newtheorem{conjecture}{{\bf 予想}}
+\newtheorem{thm}{{\bf 定理}}
+\newtheorem{exam}{{\bf 例}}
+\newtheorem{fac}{{\bf 事実}}
+\newtheorem{lem}{{\bf 補題}}
+\newtheorem{coro}{{\bf 系}}
+\newtheorem{excer}{{\bf 練習}}
+
+
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\Clos}{Clos}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Image}{Im}
+%\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Gr}{Gr}
+%\DeclareMathOperator{\Tab}{Tab}
+%\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\STab}{STab}
+\DeclareMathOperator{\Map}{Map}
+\DeclareMathOperator{\Id}{Id}
+%\DeclareMathOperator{\id}{id}
+%\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\Rel}{Rel}
+\DeclareMathOperator{\Set}{Set}
+\DeclareMathOperator{\Setm}{Setm}
+%\DeclareMathOperator{\Top}{Top}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\triv}{triv}
+
+
+\def\x{\mathbf{x}}
+
+
+\title{Categories of topological spacies isomorphic to categories of relational algebras for a monad}
+%\subtitle[Role, Origin, Apps, Def, e.t.c...]{Role, Origin, Apps, Def, e.t.c...}
+\author[Naoto Agawa]
+{Naoto Agawa}
+\institute[Kyushu Univ., Math Dept.
+]{\url{}\\%溝口研究室
+}
+\date{Monday, 27 May, 2019}
+
+\begin{document}
+
+\begin{frame}\frametitle{}
+  \titlepage
+\end{frame}
+
+\begin{frame}\frametitle{}
+  \tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section*{目次}
+%\begin{frame}\frametitle{概要}
+%  \tableofcontents
+%\end{frame}
+
+%\section{はじめに}
+%\begin{frame}\frametitle{}
+%\begin{figure}[h]
+%Diaconis Sturmfelsの写真と論文
+%\includegraphics[width=50mm]{Diaconis.eps}
+%\includegraphics[width=50mm]{sturmfels.eps}
+%\includegraphics[width=50mm]{paper.eps}
+%\end{figure}
+%\begin{center}
+%``Algebraic algorithms for sampling from conditional distributions"
+
+%\end{center}
+%\end{frame}
+
+\section{Introduction1}
+	\begin{frame}{Aim for this seminar}
+		\begin{proposition}[$\mathrm{M. Barr},1970$]
+				$$ {\rm Top} \cong {\rm Rel(\mathbf{U})} $$
+		\end{proposition}
+		{\small
+			 \begin{itemize}
+				\item[$\dagger$]  M. Barr, {\sl Relational algebra}, Lecture Notes in Math., 
+				137:39-55, 1970．
+			 \end{itemize}
+		 }
+		\begin{itemize}
+			 \item We try to formally prove his result with relational calculus.
+		\end{itemize}
+	\end{frame}
+
+
+
+
+
+
+
+	\begin{frame}{Tools in this seminar}
+		\begin{itemize}
+			\item Categories
+			\item Functors
+			\item Natural transformations
+				\begin{itemize}
+					\item Vertical composites
+					\item "Quasi-" horizontal composites
+				\end{itemize}
+			\item Adjoint functors
+			\item Monads
+			\item Relational algebras
+			\item Filters
+		\end{itemize}
+	\end{frame}
+
+
+
+
+
+
+	\begin{frame}{What is category theory?}
+		\begin{itemize}
+			\item Definition of category as one thoery in math
+				\begin{itemize}
+					\item
+				\end{itemize}
+		\end{itemize}
+	\end{frame}
+
+
+
+
+
+
+	\begin{frame}{Another topic for category thoery}
+		\begin{itemize}
+			\item Beck's theorem
+				\begin{itemize}
+					\item Required tools
+						\begin{itemize}
+							\item Fundamental ideas on the previous slide
+							\item Universality
+							\item The comparison functor
+							\item Coequalizers
+							\item Coequalizer creators
+						\end{itemize}
+				\end{itemize}
+			\item Implemented FORGETTING types ($\cdots$ a variable absorbs everything)
+			\begin{itemize}
+			\item categories
+				\begin{itemize}
+					\item associativity
+					\item identity
+				\end{itemize}
+			\item[$\rightarrow$]
+			\item functors
+				\begin{itemize}
+					\item Law of operators-preservation
+				\end{itemize}
+			\item natural transformations
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+
+
+
+	\begin{frame}{Aim00 for category thoery}
+%
+%
+\begin{itemize}
+%
+%
+\item Areas of mathematics
+%
+%
+\begin{itemize}
+%
+\item Set theory
+%
+\item Linear algebra
+%
+\item Group theory
+
+				\item Ring theory
+				\item Module theory
+				\item Topology
+				\item Algebraic geometry
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+
+
+
+
+
+
+
+	\begin{frame}{Origin of category thoery}
+		\begin{itemize}
+			\item ORIGIN
+				\begin{itemize}
+					\item Sprout
+						\begin{itemize}
+							\item (PAPER) S. Eilenberg and S. MacLane, Natural Isomorshisms in
+							Group Theory, Proceedings of the National Academy of Sciences,
+							28(1942), 537-543.
+							\item "Frequently in modern mathematics there occur phenomena of "naturality":
+			a "natural" isomorphism between two groups or between
+			two complexes, a "natural" homeomorphism of two spaces and the
+			like. We here propose a precise definition of the "naturality" of such
+			correspondences, as a basis for an appropriate general theory."
+							\item[$\rightarrow$] They might want to formulize "naturality" between one mathematical
+			flamework and another flamework; i.e. a NATURAL ISOMORPHISM
+			between two functors in the current category theory.
+							\item Ref: https://qiita.com/snuffkin/items/ecda1af8dca679f1c8ac
+						\end{itemize}
+					\item Topology (Homology)
+						\begin{itemize}
+							\item (PAPER) Samuel Eilenberg and Saunders Mac Lane, General theory
+							of natural equivalences. Transactions of the American Mathematical
+							Society 58 (2) (1945), pp.231-294.
+							\item They must find it important to DEVELOP an ALGEBRAIC
+							FLAMEWORK focused on the feature of homomorphisms or
+							mappings, by CALCULATION of the TOPOLOGICAL INVARIANT
+							from a series of GROUP HOMOMORPHISMs.
+							\item Ref: Book of Proffesor Y. Kawahara
+						\end{itemize}
+				\end{itemize}
+		\end{itemize}
+	\end{frame}
+
+
+
+
+
+
+	\begin{frame}{Definition of natural isomorphism}
+
+	\end{frame}
+
+
+
+
+
+
+	\begin{frame}{Apps of category theory}
+		\begin{itemize}
+			\item APPLIED AREAS:
+				\begin{itemize}
+					\item Quantum topology
+						\begin{itemize}
+							\item Happy outcomes:
+							\item[$\rightarrow$]  Tangles have a great interaction with various algebraic properties for
+		their invariants, which allows us to have more deep study for
+		substantial properties of links.
+							\item[$\rightarrow$]  Helps us to see the quantum invariants as the functors from the
+		category of tangles to a category, where a tangle is a subset of links
+		(, in intuition, where a link is a collection of multiple knots and a knot
+		is one closed string).
+							\item[$\rightarrow$] We can generate a invariant for a tangle every time you choose a
+		special category (called ribbon category) and its object, where in
+		most cases we choose ribbon category with myriads of elements.
+							\item "A polynomial invariant for knots via non Neumann algebras",
+		Bulletin of American Mathematical Society (N. S.) 12 (1985), no. 1, pp.103-111.
+							\item Awarded the fields medal on 1990 at Kyoto with "For the proof of
+		Hartshorne's conjecture and his work on the classification of
+		three-dimensional algebraic varieties."
+							\item cf. At the same meeting a Japanese proffesor Shigefumi Mori was
+		awarded with "For the proof of Hartshorne's conjecture and his work
+		on the classification of three-dimensional algebraic varieties."
+						\end{itemize}
+				\end{itemize}
+		\end{itemize}
+	\end{frame}
+
+
+
+
+
+
+	\begin{frame}{Apps of cateory}
+		\begin{itemize}
+			\item Denotational semantics for programming languages
+			\item Group theory
+			\item Mathematical physics (especially, quantum physics) based on operator algebras
+			\item Galois theory and physics
+			\item Logic
+			\item Algebraic geometry
+			\item Algebraic topology
+			\item Representation theory
+			\item System biology
+		\end{itemize}
+	\end{frame}
+
+
+
+
+
+
+	\begin{frame}{Features on cateory theory}
+			\begin{itemize}
+					\item set theory $\cdots$ point-oriented;
+							\begin{itemize}
+									\item $^\forall x,x'\in s(f), f(x)=f(x')\Rightarrow x=x'$;
+									\item $^\forall y\in t(f), ^\exists x\in s(f) s.t. f(x)=y$;
+									\item $\emptyset_X$;
+								\item $\{a\}\in X$;
+							\end{itemize}
+					\item category thoery $\cdots$ arrow-oriented;
+							\begin{itemize}
+									\item $^\forall g_1, g_2: W\rightarrow s(f), f\circ g_1=f\circ g_2 \Rightarrow
+									g_1=g_2$ $ \mbox{ ( assuming }W\mbox{ is a set with }W=s(g_1), W=s(g_2))$;
+									\item $^\forall g_1, g_2: t(f)\rightarrow Z,  g_1 \circ f = g_2 \circ f \Rightarrow
+									g_1=g_2$ $\mbox{ ( assuming }Z\mbox{ is a set with }Z=t(g_1), W=t(g_2))$;
+									\item $^\forall X, ^{\exists !} f:X \rightarrow \emptyset_X$;
+									\item $^\forall Y, ^{\exists !} f:\{a\}\rightarrow Y$;
+							\end{itemize}
+			\end{itemize}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{Features on cateory theory}
+			\begin{itemize}
+					\item set theory $\cdots$ point-oriented;
+							\begin{itemize}
+									\item $X\times Y=\{(x,y);x\in X, y\in Y\}$;
+							\end{itemize}
+					\item category thoery $\cdots$ arrow-oriented;
+							\begin{itemize}
+									\item For sets $X$ and $Y$, a set $X\times Y$ is called
+									the cartesian product if the following condition satisfies:
+											\begin{itemize}
+													\item There exists arrows
+														$
+														\xymatrix{
+														X
+														& X\times Y
+														\ar[l]_{\pi_l}
+														\ar[r]^{\pi_r}
+														& Y
+														}
+														$
+													such that the univarsality
+														\begin{equation*}
+														^{\exists!}(f,g):Z\rightarrow
+														X\times Y,~s.t.~\pi_l(f,g)=f \wedge \pi_r(f,g)=g
+														\end{equation*}
+													holds for a set $Z$ and arrows
+														$
+														\xymatrix{
+														X
+														& Z
+														\ar[l]_{f}
+														\ar[r]^{g}
+														& Y
+														}
+														$
+													.
+													\begin{equation*}
+														\begin{gathered}
+															\xymatrix{
+															X
+															\ar@{}[drr]|{\rotatebox{0}{$\circlearrowright$}}
+															&&
+															X\times Y
+															\ar[ll]_{\pi_l}
+															\ar[rr]^{\pi_r}
+															&&
+															Y
+															\ar@{}[dll]|{\rotatebox{0}{$\circlearrowleft$}}
+															\\
+															&&
+															Z
+															\ar@{.>}[u]_{^{\exists!}(f,g)}
+															\ar@/^18pt/[ull]^{f}
+															\ar@/_18pt/[urr]_{g}
+															&&
+															}
+														\end{gathered}
+													\end{equation*}
+								\end{itemize}
+						\end{itemize}
+			\end{itemize}
+	\end{frame}
+
+
+
+	\begin{frame}{Definition of categories}
+			\begin{itemize}
+					\item The definition of a category
+							\begin{itemize}
+									\item A pair $\mathcal{C}=(\mathcal{O},(\mathcal{C}(a,b))_{(a,b)\in\mathcal{O}^2},
+									 (\circ_{(a,b,c)})_{(a,b,c)\in\mathcal{O}^3})$
+									with the three following concepts
+											\begin{itemize}
+													\item $\mathcal{O}$:a set;
+													\item $(\mathcal{C}(a,b))_{(a,b)\in\mathcal{O}^2}$:
+													a family of sets with the index set $\mathcal{O}^2$;
+													\item $(\circ_{(a,b,c)})_{(a,b,c)\in\mathcal{O}^3}$:
+													a family of maps with the index set $\mathcal{O}^3$;
+											\end{itemize}
+									is called a category if the following conditions
+											\begin{itemize}
+													\item $\mathcal{C}(a,b)$ is disjoint i.e. $(a,b)\neq (a',b')\Rightarrow
+													\mathcal{C}(a,b)\cap\mathcal{C}(a',b')\neq\emptyset$;
+													\item $\circ_{(a,b,c)}$:$\mathcal{C}(a,b)\times\mathcal{C}(b,c)\rightarrow
+													\mathcal{C}(c,a)$:
+													a map; omitted by for convinience from here onward;
+													\item $^\forall a\in\mathcal{O}, ^\exists \id_a\in\mathcal{C}(a,a)~s.t.~
+													^\forall b\in\mathcal{O}, ^\forall f\in\mathcal{C}(b,a),
+													^\forall g\in\mathcal{C}(a,b), \id_a\circ f=f, g\circ\id_a=g$
+													\item  $^\forall a,b,c,d\in\mathcal{O}, ^\forall f\in\mathcal{C}(a,b),
+													 ^\forall g \in \mathcal{C}(b,c), ^\forall h \in\mathcal{C}(c,d),
+													(h\circ g)\circ f=h\circ (g\circ f)$;
+											\end{itemize}
+							\end{itemize}
+					all satisfy $\mathcal{C}$.
+			\end{itemize}
+	\end{frame}
+
+
+
+\section{Introduction2}
+	\begin{frame}{GO THROUGH THIS SLIDE}
+			\begin{definition}[Quivers]					
+					A pair $Q=(\mathcal{O},\mathcal{M},s,t)$ is called a {\bf quiver} or an {\bf oriented graph} if
+					following conditions
+							\begin{itemize}
+									\item $\mathcal{O}$ and $\mathcal{M}$ are sets;
+									\item $s:\mathcal{M}\rightarrow\mathcal{O}$ and $t:\mathcal{M}\rightarrow\mathcal{O}$
+									are maps;
+							\end{itemize}
+					are satisfied.
+					An element of $\mathcal{O}$ is called a {\bf vertex}, and that of  $\mathcal{M}$ an {\bf arrow}.
+					For an arrow $f\in\mathcal{M}$, $s(f)$ is called a {\bf source} of $f$ and $t(f)$ is called a {\bf target} of $f$.
+					$Q$ is called a {\bf finite quiver} if $\mathcal{O}$ and $\mathcal{M}$ are finite.
+			\end{definition}
+			\begin{figure}
+					\includegraphics[width=4cm]{2000px-Directed_graph.png}
+					\caption{an oriented graph}
+					\label{ImageOfAnOrientedGraph}
+			\end{figure}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{Definition of categories}
+			\begin{definition}[Quivers]
+					Let
+							\begin{itemize}
+									\item $\mathcal{O}$ and $\mathcal{M}$ be sets.
+									\item $s:\mathcal{M}\rightarrow\mathcal{O}$ and $t:\mathcal{M}\rightarrow\mathcal{O}$
+									be maps.
+							\end{itemize}
+					Then, a quadruplet $Q=(\mathcal{O},\mathcal{M},s,t)$ is called a {\bf quiver} or an {\bf oriented graph}, where
+					an element of
+							\begin{itemize}
+									\item  $\mathcal{O}$ is called a {\bf vertex};
+									\item  $\mathcal{M}$ is called an {\bf arrow};
+							\end{itemize}
+					and the image
+							\begin{itemize}
+									\item $s(f)$ is called a {\bf source} of $f$
+									\item $t(f)$ is called a {\bf target} of $f$
+							\end{itemize}
+					for an arrow $f\in\mathcal{M}$.\\
+					$Q$ is called a {\bf finite quiver} if $\mathcal{O}$ and $\mathcal{M}$ are finite.
+			\end{definition}
+	\end{frame}
+
+
+
+	\begin{frame}{Definition of categories}
+			\begin{figure}
+					\includegraphics[width=4cm]{2000px-Directed_graph.png}
+					\caption{an oriented graph}
+					\label{ImageOfAnOrientedGraph}
+			\end{figure}
+	\end{frame}
+	
+		
+		
+	\begin{frame}{Definition of categories}			
+			\begin{definition}[Paths in a quiver]
+					Let a quadruplet $Q=(\mathcal{O},\mathcal{M},s,t)$ be a quiver,
+					and, for $n\geq 2$, $\mathcal{M}_n(Q)$ a set defined by
+							$$
+									\mathcal{M}_n(Q):=\{
+									(f_1,\cdots,f_n)\in\mathcal{M}^n; s(f_i)=t(f_{i+1}), 1\leq i\leq n-1
+									\},
+							$$
+					where $\mathcal{M}_0(Q):=\mathcal{O}$ and $\mathcal{M}_1(Q):=\mathcal{M}$.\\
+					Then, an element of $\mathcal{M}_n(Q)$ is called a {\bf path} of length $n$ in $Q$, and is described as follows:
+							\begin{equation*}
+									\begin{gathered}
+															\xymatrix{
+															v_n
+															\ar[r]^{f_n}
+															&
+															v_{n-1}
+															\ar[r]^{f_{n-1}}
+															&
+															v_{n-2}
+															\ar[r]^{f_{n-2}}
+															&
+															\cdots
+															\ar[r]^{f_2}
+															&
+															v_{1}
+															\ar[r]^{f_1}
+															&
+															v_0
+															}.
+									\end{gathered}
+							\end{equation*}
+					Moreover,
+							\begin{itemize}
+									\item a path $(f_1,\cdots,f_n)\in\mathcal{M}^n(Q)$ is denoted by $f_1 \cdots f_n$.
+									\item $\mathcal{M}_n(Q)$ is denoted by $\mathcal{M}_n$.	
+							\end{itemize}
+			\end{definition}
+	\end{frame}		
+	
+	
+	
+	\begin{frame}{Definition of categories}
+			\begin{definition}[Categories]
+							Let
+									\begin{itemize}
+											\item $(\mathcal{O},\mathcal{M},s,t)$ be a quiver,
+											where
+													\begin{itemize}
+															\item it is denoted by $\mathrm{Quiver}(\mathcal{C})$
+															\item
+															$\mathcal{M}_n(\mathrm{Quiver}(\mathcal{C}))$
+															is denoted
+															by $\mathcal{M}_n$ or $\mathcal{M}_n(\mathcal{C})$
+													\end{itemize}											
+											\item $\circ:\mathcal{M}_2\rightarrow\mathcal{M}$ be a map, where
+											$\circ(f,g)$ is denoted by $f\circ g$.
+									\end{itemize}
+							 Then, a quintette $\mathcal{C}=(\mathcal{O},\mathcal{M},s,t,\circ)$ is called a {\bf category} if
+									\begin{itemize}
+										\item $s(f\circ g)=s(g)$ and $t(f\circ g)=t(f)$ hold for a path $(f,g)\in\mathcal{M}_2$
+										\item (associativity) $(f\circ g)\circ h=f\circ (g\circ h)$ holds for a path $(f,g,h)\in\mathcal{M}$
+										\item (identity) there exists a map $1:\mathcal{O}\rightarrow\mathcal{M}$
+										both $f\circ 1_{s(f)}=f$ and $1_{t(f)}\circ f=f$ hold, where $1(A)$ is denoted by
+										$1_A$ for a vertex $A\in\mathcal{O}$
+									\end{itemize}
+					all satisfy $\mathcal{C}$.
+					\begin{equation*}
+									\begin{gathered}
+															\xymatrix{
+															v_3
+															\ar[r]^{h}
+															&
+															v_2
+															\ar[r]^{g}
+															&
+															v_{1}
+															\ar[r]^{f}
+															&
+															v_0
+															}.
+									\end{gathered}
+					\end{equation*}
+			\end{definition}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{Definition of categories}
+			\begin{definition}[from the previous slide (other helpful words)]
+					\begin{itemize}
+							\item An element in $\mathcal{O}$ is called an {\bf object}.
+							\item $\mathcal{O}$ is called {\bf a set of objects}
+							in $\mathcal{C}$ and denoted by $\mathrm{Ob}(\mathcal{C})$.
+							\item An element in $\mathcal{M}$ is called a {\bf morphism} or an {\bf arrow}.
+							\item $\mathcal{M}$ is called {\bf a set of morphisms} in $\mathcal{C}$
+							 and denoted by $\mathrm{Mor}(\mathcal{C})$.
+							\item For a morphism $f\in\mathcal{M}$,
+							 		\begin{itemize}
+											\item $s(f)$ is called a {\bf source} of $f$, or a {\bf domain} of $f$.
+											\item $t(f)$ is called a {\bf target} of $f$, or a {\bf codomain} of $f$.
+									\end{itemize}
+							\begin{equation*}
+									\begin{gathered}
+															\xymatrix{
+															source
+															\ar[r]^{f}
+															&
+															target
+															}
+									\end{gathered}
+							\end{equation*}
+					\end{itemize}
+			\end{definition}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{Definition of categories}
+			\begin{definition}[from the previous slide (other helpful words)]
+					\begin{itemize}
+							\item $\circ$ is called a {\bf composition}.
+							\item  $f\circ g$ is called a {\bf composite} of $f$ and $g$.
+							\item 
+							$A\in \mathrm{Ob}(\mathcal{C})$ is denoted by $A \in \mathcal{C}$ for simplicity
+							as long as there is no risk of confusion.
+							\item	For sets $A$ and $B$ in $\mathcal{C}$,
+									\begin{itemize}
+											\item a subset $s^{-1}(A) \cap t^{-1}(B)$ of $\mathrm{Mor}(\mathcal{C})$
+											is called a {\bf set of
+											morphisms} from $A$ to $B$, and it
+											is denoted by $\mathrm{Hom}_{\mathcal{C}}(A,B)$.
+											\item an element in $\mathrm{Hom}_{\mathcal{C}}(A,B)$
+											is called a {\bf morphism} from $A$ to $B$.
+											\item $f\in\Hom_{\mathcal{C}}(A,B)$ is denoted by $f:A\rightarrow B$.
+									\end{itemize}
+					\end{itemize}
+			\end{definition}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{Definition of categories}
+			\begin{lemma}
+					Let
+							\begin{itemize}
+									\item $\mathcal{C}:=(\mathcal{O}, \mathcal{M}, s,t,\circ)$ be a category,
+							\end{itemize}
+					and let
+							\begin{itemize}
+									\item $U_A:=\Hom_{\mathcal{C}}(A,A)$ be a set
+									\item $G_A:=(U_A, \circ)$ the diad
+							\end{itemize}
+					 for an object $A\in\mathcal{O}$.\\
+					Then,
+					$G_A$ is a monoid with the identity element $1_A$.
+			\end{lemma}
+	\end{frame}
+	
+	
+	\begin{frame}
+			\begin{proof}
+					We have that
+					\begin{itemize}
+						\item ${}^\forall f,g,h\in U_A, (h\circ g)\circ f = h\circ (g\circ f)~(\because
+						\mbox{the associativity on }\mathcal{C})$.
+						\item putting on $\id_{G_A}:=1_A$, then
+								$$i \circ \id_{G_A} = f \circ 1_A = f $$
+						and
+								$$ \id_{G_A}\circ f = 1_A \circ f = f$$
+						hold for an arrow $ f\in U_A$
+						$(\because
+						\mbox{the identity on }\mathcal{C})$.
+					\end{itemize}
+			\end{proof}
+	\end{frame}
+	
+	
+		
+	\begin{frame}
+			\begin{corollary}
+					On the previous lemma, the arrow $1_A$ and
+					the map $1:\mathcal{O}\rightarrow \mathcal{M}$ are respectively {\bf unique},
+					because of the uniqueness of the identity in a monoid.
+			\end{corollary}			
+			\begin{definition}
+					On the previous corollary, $1_A$ is called the {\bf identity} or the {\bf identity morphism} on $A$.
+			\end{definition}
+	\end{frame}
+
+
+
+		
+	\begin{frame}{Definition of categories}
+			\begin{definition}[Categories (traditional)]
+					Let 
+							\begin{itemize}
+									\item $\mathcal{O}:\mbox{a set}$.
+									\item $(\mathcal{C}(a,b))_{(a,b)\in\mathcal{O}^2}:
+									\mbox{a family of sets with the index set }\mathcal{O}^2$.
+									\item $(\circ_{(a,b,c)})_{(a,b,c)\in\mathcal{O}^3}:
+									\mbox{a family of maps with the index set }\mathcal{O}^3$.
+							\end{itemize}
+					Then,
+					the triad $\mathcal{C}=(\mathcal{O},(\mathcal{C}(a,b))_{(a,b)\in\mathcal{O}^2},
+					(\circ_{(a,b,c)})_{(a,b,c)\in\mathcal{O}^3})$
+					is called a {\bf category} if
+							\begin{itemize}
+									\item $\{\mathcal{C}(a,b)\}_{(a,b)\in \mathcal{O}^2}$
+									is disjoint i.e. $(a,b)\neq (a',b')\Rightarrow
+									\mathcal{C}(a,b)\cap\mathcal{C}(a',b')\neq\emptyset$
+									\item $\circ_{(a,b,c)}:\mathcal{C}(a,b)\times\mathcal{C}(b,c)\rightarrow
+									\mathcal{C}(c,a)$ is
+									a map,
+									and it is omitted by $\circ$ for convinience from here onward
+									\item (identity)
+									$^\forall a\in\mathcal{O}, ^\exists \id_a\in\mathcal{C}(a,a)~s.t.~
+									^\forall b\in\mathcal{O}, ^\forall f\in\mathcal{C}(b,a),
+									^\forall g\in\mathcal{C}(a,b), \id_a\circ f=f, g\circ\id_a=g$
+									\item  (associativity)
+									$^\forall a,b,c,d\in\mathcal{O}, ^\forall f\in\mathcal{C}(a,b),
+									 ^\forall g \in \mathcal{C}(b,c), ^\forall h \in\mathcal{C}(c,d),
+									(h\circ g)\circ f=h\circ (g\circ f)$
+							\end{itemize}
+					all satisfy $\mathcal{C}$.
+			\end{definition}
+	\end{frame}
+
+
+
+	\begin{frame}{Definition of categories}
+			\begin{lemma}[Cantor]
+					Let $A$ be a set. Then $|A|<|\mathcal{P}(A)|$ holds, where $\mathcal{P}(A)$ is the power set of $A$.
+			\end{lemma}
+			\begin{proof}
+					\begin{itemize}
+							\item If $A=\emptyset$, then we have $\mathcal{P}(A)=\{\emptyset\}$,
+							which yields $|A|<|\mathcal{P}(A)|$.
+							\item If $A\neq \emptyset$, we only have to take an injection but  is a bijection.
+							Let $f:A\rightarrow \mathcal{P}(A)$ be a map defined by
+									$$
+											f(x)=\{x\},
+									$$
+							then this map is an injection, which yields $|A|\leq|\mathcal{P}(A)|$.
+							Thus, we only have to verify that $f$ is not a bijection.\\
+							(GO TO THE NEXT SLIDE.)
+					\end{itemize}
+			\end{proof}			
+	\end{frame}
+	
+	
+	
+	\begin{frame}{Definition of categories}
+			\begin{proof}
+					(FROM THE PREVIOUS SLIDE)\\
+					Assuming $|A|=|\mathcal{P}(A)|$ holds
+					in order to use the proof of contradiction,
+					then we have a bijection $g:A\rightarrow\mathcal{P}(A)$
+					by definition.
+					By the way, $g(a)$ is a subset of $A$ because $g(a)\in\mathcal{P}(A)$ for all $a\in A$.
+					Thus, we have\\
+							\begin{center}
+									$a\in g(a) \vee a\notin g(a)$,
+							\end{center}
+					so let $R$ be a set defined by
+							$$
+									R=\{x\in A; x\notin g(x)\},
+							$$
+					then we have $R\in\mathcal{P}(A)$.
+					Note that $g$ is a surjection, we find $\alpha\in A$ satisfied with $g(\alpha)=R$.
+					\begin{itemize}
+							\item
+							If $\alpha\in R$, we have $\alpha\notin g(\alpha)=R$ by the definition of $R$.
+							\item
+							Conversely, given $\alpha \notin R$, we have $\alpha\in g(\alpha)=R$.
+					\end{itemize}
+					By this contradiction, we get $|A|\neq |\mathcal{P}(A)|$,
+					which presents the desired equation $|A|\lneq|\mathcal{P}(A)|$.
+			\end{proof}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{Definition of categories}
+			\begin{proposition}
+					Let $(A_i)_{i\in I}$ be a family of sets with the index set $I$.\\
+					Then there exists a set not isomorphic to any of the set $A_j$ for an index $j\in I$.
+			\end{proposition}
+			\begin{proof}
+					By the previous lemma,
+					the proof completes when you take the power set of $A_j$.
+			\end{proof}
+			\begin{itemize}
+					\item[$\rightarrow$] A collection of all sets is too large to be a set, and is neither a category.
+					\item (In this seminar, we do not use a category such that $\mathcal{O}$ and $\mathcal{M}$ are
+					too large to be sets.)
+					\item A conept "universe" was yielded.
+					\item An universe is a set among which we can consider any operations.
+			\end{itemize}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{Definition of categories}
+			\begin{figure}
+					\includegraphics[width=1cm]{19051202.jpeg}
+					\label{ImageOfTheUniverse}
+			\end{figure}		
+			\begin{axiom}[Universes]
+					There exists an universe $\mathcal{U}$ such that $X\in\mathcal{U}$ holds for a set $X$,
+					where
+					a  {\bf (Grothendieck) universe} is a set $\mathcal{U}$  with the following properties:
+							\begin{itemize}
+									\item $\mathbb{N}=\{0,1,2,\cdots\}\in\mathcal{U}$.
+									\item $^\forall x,y, x\in y, y\in\mathcal{U} \Rightarrow x\in\mathcal{U}$.
+									\item $I\in\mathcal{U}, f:I\rightarrow \mathcal{U}:$a map
+									$\Rightarrow \bigcup_{i\in I}f(i)\in\mathcal{U}$.
+									\item $x\in\mathcal{U} \Rightarrow$ $\mathcal{P}(x)\in\mathcal{U}$,
+									where $\mathcal{P}(x)$ is the power set of $x$.
+							\end{itemize}
+			\end{axiom}
+	\end{frame}
+
+
+
+	\begin{frame}{Examples of categories}
+			\begin{example}
+					By the defininition of quivers, we can take $\mathcal{C}$, an unique pair of sets defined by
+							$$
+									\mathrm{Ob}(\mathcal{C})=\emptyset
+							$$
+							$$
+									\mathrm{Mor}(\mathcal{C})=\emptyset,
+							$$
+					and this is called the {\bf empty category}. \\
+			\end{example}
+			\begin{example}
+					There exists a category with single object and single arrow (the identity), and is denoted by
+					$\mathbf{1}$.
+							$$
+									\xymatrix{\cdot \ar@(dr,ur)_{\id}}
+							$$
+			\end{example}
+	\end{frame}
+
+
+
+
+	\begin{frame}{Examples of categories}
+			\begin{example}
+					There exists a category with two objects $a,b$ and just one arrow									
+					not the identity, and is denoted by
+					$\mathbf{2}$.
+							$$
+														\xymatrix{
+														a
+														\ar@(dl,ul)^{\id}
+														\ar[r]^{}
+														&
+														b
+														\ar@(dr,ur)_{\id}
+														}
+							$$
+			\end{example}
+			\begin{example}
+					There exists a category with three objects, non-identity arrows of which are arranged as the following traiangle,
+					and it is denoted by
+					$\mathbf{3}$.
+					$$
+														\xymatrix{
+														&
+														\cdot \cdot
+														\ar[rd]^{}
+														\ar@(ul,ur)^{\id}
+														&
+														\\
+														\cdot
+														\ar[ru]^{}
+														\ar[rr]^{}
+														\ar@(dl,ul)^{\id}
+														&
+														&
+														\cdot \cdot \cdot
+														\ar@(dr,ur)_{\id}
+														}
+					$$
+			\end{example}
+	\end{frame}
+
+
+
+	\begin{frame}{Examples of categories}
+			\begin{example}
+					Let $X$ be a set, then $\mathcal{C}$, a pair of sets, defined by
+							$$\mathrm{Ob}(\mathcal{C})=X$$
+							$$\mathrm{Mor}(\mathcal{C})=\{1_x;x\in X\}$$
+					is a category, and it is called a {\bf descrete category}.
+					In fact,
+							$$\mathcal{C}(x,x)=\{1_x\}$$
+							$$\mathcal{C}(x,y)=\emptyset~(x\neq y)$$
+					hold for an element $x\in X$.
+							$$
+														\xymatrix{
+														\cdots \cdots
+														&
+														x
+														\ar@(ul,ur)^{\id}
+														&
+														y
+														\ar@(ul,ur)^{\id}
+														&
+														z
+														\ar@(ul,ur)^{\id}
+														&
+														\cdots \cdots
+														}
+							$$
+			\end{example}
+	\end{frame}
+
+
+
+
+	\begin{frame}
+			\begin{example}[a category with single object]
+							Given a monoid $M$, then $\mathcal{C}$, a pair of sets,
+							is to be a category if defined as follows:
+							$$
+									\mathrm{Ob}(\mathcal{C}):=(\mbox{the underlying set of }M)
+							$$
+							$$
+									\mathrm{Mor}(\mathcal{C}):=\left\{*\overset{\id_{*}}{\rightarrow} *\right\}
+							$$
+							$$
+									\circ_{\mathcal{C}}:=(\mbox{the operator in }\mathrm{M})~
+									(\circ_\mathcal{C}\mbox{ is a map on category }\mathcal{C}).
+							$$
+							Thus, we can construct a category with single object.
+			\end{example}
+	\end{frame}
+
+
+	
+	\begin{frame}{Examples of categories}
+			\begin{proposition}[Categories with single object]
+					Let $\mathbf{M}$ with single object be a subcategory of $\mathrm{Cat}$.
+					Then, we have $\mathrm{Mon}\cong\mathbf{M}$.
+					$$
+														\xymatrix{
+														\ast
+														\ar@(dr,ur)_{}
+														}
+							$$
+
+			\end{proposition}
+			$\rightarrow$ I'm going to strictly show this fact later, because we have to have more concepts in category theory e.g.
+			\begin{itemize}
+					\item functors
+					\item natural transformations
+					\item the isomorphic-density for a functor
+					\item other more concepts...
+			\end{itemize}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{GO THROUGH THIS SLIDE}
+			\begin{definition}
+					The denotation $\circ_{\mathcal{X}}$ is composition in a category $\mathcal{X}$.
+			\end{definition}
+			\begin{definition}
+					{\bf subcategory}
+			\end{definition}
+			\begin{definition}
+					{\bf full subcategory}
+			\end{definition}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{GO THROUGH THIS SLIDE}
+			\begin{definition}
+					{\bf functor}
+			\end{definition}
+			\begin{definition}
+					the {\bf composite}
+			\end{definition}
+			\begin{definition}
+					the {\bf identity functor}
+			\end{definition}
+			\begin{definition}
+					{\bf full functor}
+					{\bf faithfull functor}
+			\end{definition}
+	\end{frame}
+
+	
+	\begin{frame}{GO THROUGH THIS SLIDE}
+			\begin{definition}
+					{\bf natural transformation}
+			\end{definition}
+			\begin{definition}
+					{\bf natural isomorphism} or {\bf equivalence}
+					{\bf isomorphic} or {\bf equivalent}
+			\end{definition}
+	\end{frame}
+
+
+
+	\begin{frame}{GO THROUGH THIS SLIDE}
+			\begin{definition}
+					{\bf isomorphic} or {\bf equivalent}
+			\end{definition}
+
+			\begin{definition}
+					{\bf essential image}
+					{\bf isomorphism-dense} or {\bf essentially surjective}
+			\end{definition}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{GO THROUGH THIS SLIDE}
+			\begin{definition}
+					An {\bf equivalence} between categories $\mathcal{A}$ and $\mathcal{B}$ consists of
+					a pair $\mathcal{A}\overset{F}{\underset{G}{\rightleftarrows}}\mathcal{B}$
+					of functors together with natural isomorphisms
+							$$
+									\eta:1_A\rightarrow G\circ F,
+							$$
+							$$
+									 \varepsilon:F\circ G\rightarrow 1_B.
+							$$
+					If there exists an equivalence between $A$ and $B$, we say that $A$ and $B$ are
+					{\bf equivalent}, and write $A\cong B$.
+					We also say that the functors $F$ and $G$ are {\bf equivalences}.
+			\end{definition}
+			\begin{definition}
+					Let $\mathcal{A}$ be a category. A {\bf subcategory} $\mathcal{S}$ of $\mathcal{A}$
+					consists of a sub $\mathrm{ob}(\mathcal{S})$ of $\mathrm{ob}(\mathcal{A})$ together with,
+					for each $S, S' \in\mathrm{ob}(\mathcal{S})$, a subclass $\mathcal{S}(S, S')$ of $\mathcal{A}(S, S')$,
+					such that $\mathcal{S}$ is closed under composition and identities.
+					It is a {\bf full subcategory} if $\mathcal{S}(S, S') = \mathcal{A}(S, S')$ for all $S, S'\in\mathrm{ob}(\mathcal{S})$.
+			\end{definition}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{GO THROUGH THIS SLIDE}
+			\begin{lemma}[Corollary 1.3.19 in "Basic Category Theory", T. Leinster]
+					Let $F: \mathcal{C} \rightarrow \mathcal{D}$ be a full and faithful functor. Then $\mathcal{C}$ is
+					equivalent to the full subcategory $\mathcal{C'}$
+					of $\mathcal{D}$ whose objects are those of the form
+					$F(C)$ for some $C\in \mathcal{C}$.
+			\end{lemma}
+			\begin{proposition}[Prop 1.3.18 in "Basic Category Theory", T. Leinster]
+					 {\bf essentially surjective on objects}
+			\end{proposition}
+			\begin{theorem}
+					Let $F:\mathcal{C}\rightarrow\mathcal{D}$ be a functor. Then, the following propositions are equivalent:
+							\begin{enumerate}
+									\item $F$ is an equivalence.
+									\item $F$ is full, faithful and essentially surjective.
+									\item $F$ is a part of some adjoint equivalence $(F, G, \eta, \varepsilon)$.
+							\end{enumerate}
+			\end{theorem}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{GO THROUGH THIS SLIDE}
+			\begin{lemma}
+					Let $F:\mathcal{C}\rightarrow\mathcal{D}$ be a functor. Then, the following propositions are equivalent:
+							\begin{enumerate}
+									\item $F$ is an equivalence.
+									\item $F$ is full, faithful and essentially surjective.
+							\end{enumerate}
+			\end{lemma}
+			\begin{proof}
+					By the previous lemma, we only have to take an equivalence
+					$\mathbf{M}\overset{F}{\rightarrow}\mathrm{Mon}$; i.e. 
+							$$
+									{}^\exists G:\mathcal{D}\rightarrow\mathcal{C}:functor,
+									F\circ G \cong \mathrm{Id}_{\mathcal{C}} \wedge
+									G\circ F \cong \mathrm{Id}_{\mathcal{D}}
+							$$
+			\end{proof}
+	\end{frame}
+	
+
+
+	\begin{frame}{GO THROUGH THIS SLIDE}
+			\begin{proof}
+							$(\rightarrow)$ Given a monoid $M \in\mathrm{Mon}$, then $\mathcal{C}$, a pair of sets,
+							is a category when defined as follows:
+							$$
+									\mathrm{Ob}(\mathbf{M}):=\{*\}
+							$$
+							$$
+									\mathrm{Mor}(\mathbf{M}):=M
+							$$
+							$$
+									\circ_{\mathcal{M}}:=\circ_{\mathrm{Mon}}.
+							$$
+							$(\leftarrow)$ Let $S$ be a category of $\mathbf{M}$, then $S$ is a monoid when defined as follows:
+							$$
+									\mathrm{Ob}(M):=\mathrm{Ob}(\mathcal{C})
+							$$
+							$$
+									\mathrm{Mor}(M):=\mathrm{End}_\mathcal{C}(*)=M
+							$$
+							$$
+									\circ_{\mathrm{Mon}}:=\circ_{\mathcal{M}}.
+							$$
+			\end{proof}
+	\end{frame}
+	
+	
+
+	\begin{frame}
+			\begin{definition}[pseudo-orders]
+					A relation $\leq$ on a set $P$ is called a {\bf pseudo-order} or a {\bf preorder} if
+					it is reflexive and transitive; i.e. for all $a,b,c\in P$, we have that:
+							\begin{itemize}
+									\item (reflexivity) $a\leq a$
+									\item (transitivity) $a\leq b, b\leq c \Rightarrow a\leq c$.
+							\end{itemize}
+					A set that is equipped with a preorder is called a {\bf preordered set} (or {\bf proset}).
+			\end{definition}
+			\begin{example}
+					\begin{itemize}
+							\item partial orders
+							\item total orders, or linear orders
+							\item equivalence relations
+					\end{itemize}
+			\end{example}
+	\end{frame}
+
+
+
+	\begin{frame}{Examples of categories}
+			\begin{example}[the category with preordered sets]
+					Let $P$ be a poset, and $a,b$ elements in $P$. Then,
+					$\mathcal{C}$, a pair of sets, defined by
+							\begin{itemize}
+									\item $\mathrm{Ob}(\mathcal{C}):=(\mbox{the underlying set of }P)$
+									\item $\mathcal{C}(a,b):=\left\{(b,a)\right\}~(\mbox{if }a\leq b)$
+									\item $\mathcal{C}(a,b):=\left\{(b,a)\right\}~(otherwise)$
+									\item $(c_3,c_2)\circ_{\mathcal{C}}(c_2,c_1):=(c_3,c_1)~
+									({}^\forall c_1,{}^\forall c_2, {}^\forall c_3\in P)$
+									(, where $\circ_\mathcal{C}$ in $\mathcal{C}$)
+							\end{itemize}
+					is a category.
+			\end{example}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{Examples of categories}
+			\begin{example}[the category with totally ordered sets]
+					Let $P$ be an ordered set, and $a,b$ elements in $P$. Then,
+					$\mathcal{C}$, a pair of sets, defined by
+							\begin{itemize}
+									\item $\mathrm{Ob}(\mathcal{C}):=\{\mbox{the underlying set of }P\}$
+									\item $\mathcal{C}(a,b):=\left\{(b,a)\right\}~(\mbox{if }a\leq b)$
+									\item $\mathcal{C}(a,b):=\left\{(b,a)\right\}~(otherwise)$
+									\item $(c_3,c_2)\circ_{\mathcal{C}}(c_2,c_1):=(c_3,c_1)~
+									({}^\forall c_1,{}^\forall c_2, {}^\forall c_3\in P)$
+									(, where $\circ_\mathcal{C}$ in $\mathcal{C}$)
+							\end{itemize}
+					is a category.
+			\end{example}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{Examples of categories}
+			\begin{example}[special case for the above]
+					For $n\geq 0$, a countable finite totally orderd set $S_{n}:=(\{0,1,\cdots, n-1\},\leq_P)$ is a category.
+							$$
+												\xymatrix{
+														1			
+														\ar[r]^{}
+														&
+														2
+														\ar[r]^{}
+														&
+														3
+														\ar[r]^{}
+														&
+														\cdots
+												}
+							$$
+			\end{example}
+			$\rightarrow$ We already had nearly the same chain as follows:
+							$$
+												\xymatrix{
+														1			
+														&
+														\leq
+														&
+														2
+														&
+														\leq
+														&
+														3
+														&
+														\leq
+														&	
+														\cdots
+												}
+							$$
+			$\rightarrow$ The most upside is the {\bf same} as descrete categories.
+	\end{frame}
+
+
+	
+	\begin{frame}{Examples of categories}
+			\begin{definition}[Zermelo-Fraenkel set theory (ZFC)]
+				\begin{itemize}
+						\item ({\bf Axiom of extensionality})\\
+						Two sets are equal (are the same set) if they have the same elements:\\
+						$\forall x\forall y[\forall z(z\in x\Leftrightarrow z\in y)\Rightarrow x=y].$
+						\item ({\bf Axiom of regularity} (also called the {\bf Axiom of foundation}))\\
+						Every non-empty set x contains a member y such that x and y are disjoint sets:\\
+						$\forall x\,(x\neq \varnothing \rightarrow \exists y\in x\,(y\cap x=\varnothing ))$\\
+						This implies, for example, that no set is an element of itself and that every set has an ordinal rank.
+						\item ({\bf Axiom schema of specification}
+						(also called the {\bf axiom schema of separation} or {\bf of restricted comprehension}))
+				\end{itemize}
+			\end{definition}
+	\end{frame}
+
+
+
+	\begin{frame}{Examples of categories}
+			\begin{definition}[Zermelo-Fraenkel set theory (ZFC)]
+				\begin{itemize}
+						\item ({\bf Axiom of pairing})\\
+						\item ({\bf Axiom of union})\\
+						\item ({\bf Axiom schema of replacement})\\
+				\end{itemize}
+			\end{definition}
+	\end{frame}
+
+
+
+	\begin{frame}{Examples of categories}
+			\begin{definition}
+					\begin{itemize}
+						\item ({\bf Axiom of infinity})\\
+						\item ({\bf Axiom of power set})\\
+						For any set $x$, there is a set $y$ that contains every subset of $x$:
+						$$\forall x\exists y\forall z[z\subseteq x\Rightarrow z\in y].$$
+						\item ({\bf Well-ordering theorem})\\
+					\end{itemize}
+			\end{definition}
+	\end{frame}
+
+
+	
+	\begin{frame}{Examples of categories}
+			\begin{axiom}[HERE IN USE]
+					An universe $\mathcal{U}$ is fixed.
+			\end{axiom}
+			\begin{definition}
+					An element of $\mathcal{U}$ is called a {\bf small set}.
+			\end{definition}
+			This expression "small" does not refer to how small its cardinality is.
+			\begin{proposition}
+					$\{\mathcal{U}\}$ is a finite set with some single element, however
+					$\{\mathcal{U}\} \notin \mathcal{U}$ holds.
+			\end{proposition}
+			\begin{proof}
+					First we have $\mathcal{U}\in\{\mathcal{U}\}$ by definition. 
+					Assuming $\{\mathcal{U}\}\in \mathcal{U}$ holds,
+					by using the definition of universes,
+					we have $\mathcal{U}\in\mathcal{U}$ in contradiction to the axiom of regularity.
+			\end{proof}
+	\end{frame}
+
+
+
+	\begin{frame}{Examples of categories}
+			\begin{example}
+					For small sets $a,b\in\mathcal{U}$,
+					a category $\mathcal{C}$ defined by
+							\begin{itemize}
+									\item $\mathrm{Ob}(\mathcal{C}):=\mathcal{U}$
+									\item $\mathcal{C}(a,b):=\{\mbox{maps from }a\mbox{ to }b\}$
+									\item ordinary composite of maps 
+							\end{itemize}
+					is called a category of (small) sets, and is denoted by $\underline{\mathrm{Set}}$. 
+			\end{example}
+			$\rightarrow$ We want to consider a category of {\bf entire} sets, however we have difficulty
+			using that category because that is not a set. Therefore, we compose a category of {\bf small} sets,
+			which is a really set.
+			\begin{definition}
+					A structured set with a small underlying set is called a {\bf small structured set}.
+			\end{definition}
+	\end{frame}
+	
+	
+
+	\begin{frame}{Examples of categories}
+			\begin{example}
+			$\underline{\mathrm{Grp}}$ is a category, where its objects are all small groups $\{G_i\}_{i\in I}$ for an index set $I$,
+			its arrow is a group homomorphism of $G_S$ for a set $S$,
+			and its composition is the operator in $G_S$.
+			$\underline{\mathrm{Grp}}$ is called a {\bf category of (small) groups}.
+			\end{example}
+			\begin{example}
+			$\underline{\mathrm{Mon}}$ is a category, where its objects are all small monoids $\{M_i\}_{i\in I}$ for an index set $I$,
+			its arrow is a monoid homomorphism of $M_S$ for a set $S$,
+			and its composition is the operator in $M_S$.
+			$\underline{\mathrm{Mon}}$ is called a {\bf category of (small) monoids}.
+			\end{example}
+			\begin{example}
+			$\underline{\mathrm{Ab}}$ is a category, where its objects are all small Abelian groups $\{A_i\}_{i\in I}$ for an index set $I$,
+			its arrow is an Abelian group homomorphism of $A_S$ for a set $S$,
+			and its composition is the operator in $A_S$.
+			$\underline{\mathrm{Ab}}$ is called a {\bf category of (small) abelian groups}.
+			\end{example}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{Examples of categories}
+			\begin{example}
+			$\underline{\mathrm{Ring}}$ is a category, where its objects are all small rings $\{R_i\}_{i\in I}$ for an index set $I$,
+			its arrow is a ring homomorphism of $R_S$ for a set $S$,
+			and its composition is the operators in $R_S$.
+			$\underline{\mathrm{Ring}}$ is called a {\bf category of (small) rings}.
+			\end{example}
+			\begin{example}
+			$\underline{\mathrm{CRing}}$ is a category, where its objects are all small commutative $\{R_i\}_{i\in I}$ for an index set $I$,
+			its arrow is a ring homomorphism restericted to $R_S$ for a set $S$,
+			and its composition is the operators in $R_S$.
+			$\underline{\mathrm{CRing}}$ is called a {\bf category of (small) commutative rings}.
+			\end{example}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{Examples of categories}
+			\begin{example}
+			$\underline{\mathrm{RMod}}$ is a category, where its objects are all small left $R$-modules,
+			its arrows are all linear maps.
+			$\underline{R\mathrm{-Mod}}$ is called a {\bf category of (small) left $R$-modules}.
+			\end{example}
+			\begin{example}
+			$\underline{\mathrm{ModR}}$ is a category, where its objects are all small right $R$-modules,
+			its arrows are all linear maps.
+			$\underline{R\mathrm{-Mod}}$ is called a {\bf category of (small) right $R$-modules}.
+			\end{example}
+			\begin{example}
+			$\underline{\mathrm{Ord}}$ is a category, where its objects are all small ordered sets,
+			its arrows are all preserving maps,
+			and its composition is regular one of maps.
+			$\underline{\mathrm{Ord}}$ is called a {\bf category of (small) ordered sets}.
+			\end{example}
+	\end{frame}
+	
+	
+	\begin{frame}{Examples of categories}
+			\begin{example}
+			$\underline{\mathrm{Top}}$ is a category, where its objects are all small topological spaces,
+			its arrows are all continuous maps,
+			and its composition is the usual composition of maps.
+			$\underline{\mathrm{Top}}$ is called a {\bf category of (small) topological spaces}.
+			\end{example}
+			\begin{example}
+			$\underline{\mathrm{Toph}}$ is a category, where its objects are all small topological spaces,
+			its arrows are all homotopy classes of continuous maps.
+			$\underline{\mathrm{Toph}}$ is called a {\bf category of (small) topological spaces}.
+			\end{example}
+			\begin{example}
+			$\underline{\mathrm{Top}_*}$ is a category, where its objects are topological spaces with selected base point,
+			its arrows are all base point-preserving maps.
+			$\underline{\mathrm{Top}_*}$ is called a {\bf category of (small) topological spaces}.
+			\end{example}
+	\end{frame}
+
+	
+	
+	\begin{frame}{Examples of categories}
+			\begin{example}
+			$C^r\underline{\mathrm{Mfd}}$ is a category, where its objects are all small $C^r$-manifolds,
+			its arrows are all $C^r$-maps.
+			$\underline{C^r\mathrm{Mfd}}$ is called a {\bf category of (small) $C^r$-manifolds}.
+			\end{example}
+			\begin{example}
+			$\underline{\mathrm{Sch}}$ is a category, where its objects are all small schemes,
+			its arrows are all morphisms of schemes,
+			and its composition is the usual composition of maps.
+			$\underline{\mathrm{Sch}}$ is called a {\bf category of (small) schemes}.
+			\end{example}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{Examples of categories}
+			\begin{example}
+			$\underline{\mathrm{Matr}_K}$ for a fixed field $K$ is a category, where its objects are all positive integers $m,n,\cdots$,
+			and 
+			its arrow is a $m\times n$ matrix $A$ (which is regarded as a map $A:m\rightarrow n$),
+			and its composition is the usual matrix product.
+			$\underline{\mathrm{Matr}_K}$ is called a {\bf category of (small) vector spaces}.
+			\end{example}
+			\begin{example}
+			$\underline{\mathrm{Vct}_K}$ for a fixed field $K$ is a category, where its objects are all small vector spaces over $K$,
+			its arrows are all linear transformations,
+			and its composition is usual composition of maps.
+			$\underline{\mathrm{Vct}_K}$ is called a {\bf category of (small) vector spaces}.
+			\end{example}
+	\end{frame}
+
+
+
+	\begin{frame}{Examples of categories}
+			\begin{example}
+			$\underline{\mathrm{Euclid}}$ is a category, where its objects are all small Euclidean spaces,
+			its arrows are all orthogonal transformations.
+			$\underline{\mathrm{Euclid}}$ is called a {\bf category of (small) Euclidean spaces}.
+			\end{example}
+			\begin{example}
+			$\underline{\mathrm{Ses-}A}$ is a category, where its objects are all small short exaxt sequences of $A$-modules.
+			$\underline{\mathrm{Ses-}A}$ is called a {\bf category of (small) $A$-modules}.
+			\end{example}
+	\end{frame}
+	
+	
+	
+		\begin{frame}{Examples of categories}
+			\begin{example}
+			$\underline{\mathrm{Set}_*}$ is a category, where its objects are all small sets each with a selected base-point,
+			its arrows are all base-point preserving maps.
+			$\underline{\mathrm{Set}_*}$ is called a {\bf category of (small) base points}.
+			\end{example}
+			\begin{example}
+			$\underline{\mathrm{Smgrp}}$ is a category, where its objects are all small semigroups,
+			its arrows are all semigroup morphisms.
+			$\underline{\mathrm{Smgrp}}$ is called a {\bf category of (small) semigroups}.
+			\end{example}
+	\end{frame}
+
+
+
+	\begin{frame}{Examples of categories}
+			\begin{example}
+			$\underline{\mathrm{Met}}$ is a category, where its objects are all small metric spaces $X,Y,\cdots$,
+			its arrows $X\rightarrow Y$ those functions which preserve the metric,
+			and its composition is usual multiplication of real numbers.
+			$\underline{\mathrm{Met}}$ is called a {\bf category of (small) metric spaces}.
+			\end{example}
+	\end{frame}
+
+	
+	
+	
+	\begin{frame}{Examples of categories}
+			\begin{definition}
+					A category $\mathcal{C}$ is small if it is small as a set; i.e. $\mathcal{O}$ and $\mathcal{M}$ are small.
+			\end{definition}
+			\begin{example}[small categories]
+					$\underline{\mathrm{Set}},\underline{\mathrm{Grp}},\underline{\mathrm{Ab}},\underline{\mathrm{Top}}$
+			\end{example}
+			\begin{counterexample}[small categories]
+					$\underline{\mathrm{Set}},\underline{\mathrm{Grp}},\underline{\mathrm{Ab}},\underline{\mathrm{Top}}$
+			\end{counterexample}
+	\end{frame}
+
+
+
+	\begin{frame}{Examples of categories}
+			\begin{definition}
+					A category $\mathcal{C}$ is called an $\mathcal{U}-$category if
+							$$
+									\mathcal{C}(a,b)\in\mathcal{U}
+							$$
+					holds for objects $a,b\in\mathrm{Ob}(\mathcal{C})$.
+			\end{definition}
+			\begin{example}[$\mathcal{U}-$categories]
+					$\underline{\mathrm{Set}},\underline{\mathrm{Grp}},\underline{\mathrm{Ab}},\underline{\mathrm{Top}}$
+			\end{example}
+	\end{frame}
+
+
+
+\section{Main contents Part1}
+
+
+
+
+
+
+\section{Main contents Part2}
+
+
+
+
+
+
+
+\section{Main contents Part3}
+
+
+
+
+
+
+\section{Main contents Part4}
+
+
+
+
+
+
+\section{Conclusion at 21 May, 2019}
+	\begin{frame}{Conclusion at 21 May, 2019}
+		\begin{itemize}
+ 			\item the defintion of categories
+					\begin{itemize}
+							\item a "directed graph" together with
+									\begin{itemize}
+											\item associative composite regarding arrows
+											\item the identity arrow
+									\end{itemize}
+					\end{itemize}
+			\item the examples of categories
+					\begin{itemize}
+							\item $\mathrm{Top}$ of topological spaces and homeomorphisms.
+							\item $\mathrm{Vect}_K$ of vector spaces over a field $K$ and homomorphisms.
+							\item $\mathrm{Mon}$ of monoids and hoomorphisms restricted to them.
+							\item more other examples...
+					\end{itemize}
+			\item we make sure to verify
+			$\mathcal{M}\cong\mathrm{Mon}$ ($\mathcal{M}$ is a subcategory with single object,
+			of a category)
+		\end{itemize}
+	\end{frame}
+
+
+
+\section{Introduction3}
+	\begin{frame}{Definition of functors}
+			\begin{definition}[Functors]
+					Let 
+							\begin{itemize}
+									\item $\mathcal{C},\mathcal{D}:\mbox{categories}$.
+									\item $F_0: \mathrm{Ob}(\mathcal{C})\rightarrow \mathrm{Ob}(\mathcal{D}):
+									\mbox{a map}$.
+									\item $F_1: \mathrm{Mor}(\mathcal{C})\rightarrow \mathrm{Mor}(\mathcal{D}):
+									\mbox{a map}$,  for $ a,b\in \mathcal{C}$, assignning to the
+									 homset $\mathcal{C}(a,b)$ the other one
+									 $\mathcal{D}(F_0(a),F_0(b))$ ; i.e.
+									${}^\forall x,y\in\mathcal{C}, {}^\forall f\in\mathcal{C}(x,y), s(F_1(f))=F_0(x), t(F_1(f))=F_0(y)$.
+
+							\end{itemize}
+					Then,
+					the quadruplet $F=(\mathcal{C},\mathcal{D},F_0,F_1)$
+					is called a {\bf functor} from $\mathcal{C}$ to $\mathcal{D}$, denoted by $F:\mathcal{C}\rightarrow\mathcal{D}$, if
+							\begin{itemize}
+									\item $F_1$ preserves composition:
+									$^\forall (f,g)\in\mathcal{M}_2(\mathcal{C}), F_1(g\circ f)=F_1(g)\circ F_1(f)$
+									\item  $F_1$ preserves identity morphisms:
+									$^\forall x\in\mathrm{Ob}(\mathcal{C}), F_1(1_x)=1_{F_0(x)}$
+							\end{itemize}
+					all satisfy $F$.
+					
+			\end{definition}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{Examples of functors}
+			\begin{definition}[Contravariant functors]
+					Let 
+							\begin{itemize}
+									\item $\mathcal{C},\mathcal{D}:\mbox{categories}$.
+									\item $F_0: \mathrm{Ob}(\mathcal{C})\rightarrow \mathrm{Ob}(\mathcal{D}):
+									\mbox{a map}$.
+									\item $F_1: \mathrm{Mor}(\mathcal{C})\rightarrow \mathrm{Mor}(\mathcal{D}):
+									\mbox{a map}$,  for $ a,b\in \mathcal{C}$, assignning to the
+									 homset $\mathcal{C}(a,b)$ the other one
+									 $\mathcal{D}(F_0(b),F_0(a))$ ; i.e.
+									${}^\forall x,y\in\mathcal{C}, {}^\forall f\in\mathcal{C}(x,y), s(F_1(f))=F_0(y), t(F_1(f))=F_0(x)$.
+
+							\end{itemize}
+					Then,
+					the quadruplet $F=(\mathcal{C},\mathcal{D},F_0,F_1)$
+					is called a {\bf contravariant functor} from $\mathcal{C}$ to $\mathcal{D}$,
+					denoted by $F:\mathcal{C}\rightarrow\mathcal{D}$, if
+							\begin{itemize}
+									\item $F_1$ preserves composition:
+									$^\forall (f,g)\in\mathcal{M}_2(\mathcal{C}), F_1(g\circ f)=F_1(f)\circ F_1(g)$
+									\item  $F_1$ preserves identity morphisms:
+									$^\forall x\in\mathrm{Ob}(\mathcal{C}), F_1(1_x)=1_{F_0(x)}$
+							\end{itemize}
+					all satisfy $F$.
+					
+			\end{definition}
+	\end{frame}
+
+	
+	
+	
+	\begin{frame}{Examples of functors}
+			\begin{example}[the identity functor]
+					For a category $\mathcal{C}$, the quadruplet $\mathrm{Id}_\mathcal{C}=(\mathcal{C},\mathcal{C},
+					(\mathrm{Id}_\mathcal{C})_0,(\mathrm{Id}_\mathcal{C})_1)$ defined by
+							\begin{itemize}
+									\item $(\mathrm{Id}_\mathcal{C})_0(x):=x$
+									\item $(\mathrm{Id}_\mathcal{C})_1(f):=f$
+							\end{itemize}
+					is a functor, called the {\bf identity functor}.
+			\end{example}
+	\end{frame}
+
+
+
+	\begin{frame}{Examples of functors}
+			\begin{example}[]
+					For a category $\mathcal{C}$, the quadruplet $(?)_\sharp=(\underline{\mathrm{Set}},
+					\underline{\mathrm{Set}},
+					((?)_\sharp)_0,((?)_\sharp)_1)$ defined by
+							\begin{itemize}
+									\item $((?)_\sharp)_0(X):=\mathcal{P}(X)$
+							\end{itemize}
+					and, for small sets $X,Y\in\underline{\mathrm{Set}}$ and an arrow $f\in\mathcal{C}(X,Y)$,
+							\begin{itemize}
+									\item $((?)_\sharp)_1(f):\mathcal{P}(X)\rightarrow\mathcal{P}(Y);S\mapsto f(S)
+									$
+							\end{itemize}
+					is a functor.
+			\end{example}
+			\begin{example}[]
+					For a category $\mathcal{C}$, the quadruplet $(?)^\sharp=(\underline{\mathrm{Set}},
+					\underline{\mathrm{Set}},
+					((?)^\sharp)_0,((?)^\sharp)_1)$ defined by
+							\begin{itemize}
+									\item $((?)^\sharp)_0(X):=\mathcal{P}(X)$
+							\end{itemize}
+					and, for small sets $X,Y\in\underline{\mathrm{Set}}$ and an arrow $g\in\mathcal{D}(Y,X)$,
+							\begin{itemize}
+									\item $((?)^\sharp)_1(g):\mathcal{P}(Y)\rightarrow\mathcal{P}(X);S\mapsto f^{-1}(S)
+									$
+							\end{itemize}
+					is a contravariant functor.
+			\end{example}
+	\end{frame}
+
+
+
+	\begin{frame}{Examples of functors}
+			\begin{example}[]
+					For a category $\mathcal{C}$, the quadruplet $\mathcal{O}=(\underline{\mathrm{Top}},
+					\underline{\mathrm{Set}},
+					\mathcal{O}_0,\mathcal{O}_1)$ defined by
+							\begin{itemize}
+									\item $\mathcal{O}_0(X):=\{\mbox{the collection of all open sets of }X\}$
+							\end{itemize}
+					and, for small topological spaces $X,Y\in\underline{\mathrm{Top}}$ and
+					a continuous arrow $f\in\mathcal{C}(X,Y)$,
+							\begin{itemize}
+									\item $\mathcal{O}_1(f):
+									\mathcal{O}_0(Y)\rightarrow \mathcal{O}_0(X);U\mapsto f^{-1}(U)
+									$
+							\end{itemize}
+					is a contravariant functor.
+			\end{example}
+	\end{frame}
+
+
+
+	\begin{frame}
+			\begin{definition}
+					For an ordered set $(P,\leq_P)$, a subset $I$ of $P$ is called a {\bf poset ideal} of $(P,\leq_P)$ if the following holds:
+					$${}^\forall a\in P, {}^\forall b\in I, a\leq_P b \Rightarrow a\in I$$
+			\end{definition}
+			\begin{example}
+					The quadruplet
+					$\mathcal{I}=(\underline{\mathrm{Ord}},
+					\underline{\mathrm{Set}},
+					(\mathcal{I})_0,(\mathcal{I})_1)$ defined by
+							\begin{itemize}
+									\item $(\mathcal{I})_0((X,\leq_X)):=\{\mbox{all poset ideals of }(X,\leq_X)\}$
+							\end{itemize}
+					and, for small ordered sets $(P,\leq_P),(Q,\leq_Q)\in\underline{\mathrm{Ord}}$ and an arrow
+					$f\in\underline{\mathrm{Ord}}((Q,\leq_Q),(P,\leq_P))$,
+							\begin{itemize}
+									\item $(\mathcal{I})_1(f):\mathcal{I}_0((Q,\leq_Q))\rightarrow\mathcal{I}_0((P,\leq_P));
+									J\mapsto f^{-1}(J)
+									$
+							\end{itemize}
+					(, really well-defined, ) is a contravariant functor.
+			\end{example}
+	\end{frame}
+
+
+
+	\begin{frame}
+			\begin{lemma}
+					The "well-defined" property on the previous example is true.
+			\end{lemma}
+			\begin{proof}
+					For $I_1$, a poset ideal of $(Q,\leq_Q)$,
+					$$f^{-1}(I_1)\in(\mathcal{I})_0((P,\leq_P))$$
+					$$\Leftarrow f^{-1}(I_1):\mbox{poset ideal of }(P,\leq_P)$$
+					$$\Leftarrow{}^\forall a\in P, {}^\forall b\in f^{-1}(I_1), a\leq _P b\Rightarrow a\in f^{-1}(I_1)$$
+					$$\Leftarrow {}^\forall a\in P,{}^\exists c\in I_1, f(a)=c.$$
+					$$(\Rightarrow {}^\exists a\in P,{}^\forall c\in I_1, f(a)\neq c.)$$
+					$$(\Rightarrow <{}^\forall b\in f^{-1}(I_1),
+					{}^\exists d\in I_1, f(b)=d> (\because b\in f^{-1}(I_1)):\mbox{contradiction})$$
+			\end{proof}
+	\end{frame}
+
+
+
+	\begin{frame}
+			\begin{example}[]
+					For a category $\mathcal{C}$, the quadruplet $F=(\underline{\mathrm{Grp}},
+					\underline{\mathrm{Set}},
+					F_0,F_1)$ defined by
+							\begin{itemize}
+									\item $F_0((X,\cdot_X)):=X$
+							\end{itemize}
+					and, for small groups $(G,\cdot_G),(G',\cdot_{G'})\in\underline{\mathrm{Grp}}$,
+							\begin{itemize}
+									\item $F_1(f):G\rightarrow G' ;(\mbox{an elements-conveyer and a operators-preserver })f
+									\mapsto (\mbox{a mere elements-conveyer })f
+									$
+							\end{itemize}
+					is a contravariant functor.
+			\end{example}
+			\begin{example}
+					In the same way, we are going to get the functor to $\underline{\mathrm{Set}}$ from each of
+					$$\underline{\mathrm{Ab}},\underline{\mathrm{Rng}},\underline{\mathrm{Top}}.$$		
+			\end{example}
+	\end{frame}
+	
+	
+	
+	\begin{frame}
+			\begin{example}
+					For
+					$$F=(\mathcal{C},\mathcal{D},F_0,F_1), F'=(\mathcal{D},\mathcal{E},F'_0,F'_1):functors,$$
+					$$\circ:\mbox{ a composition (of maps in set theory)},$$
+					then $F=(\mathcal{C},\mathcal{E},F'_0\circ F_0,F'_1\circ F_1)$ is a functor, called the
+					{\bf composite functor }of $G$ with $F$.
+			\end{example}
+	\end{frame}
+	
+	
+	
+	\begin{frame}
+			\begin{definition}
+					For a category $\mathcal{C}$ and a morphism $\mathcal{C}(A,B)$,
+					$f$ is called a {\bf monomorphism} (or $f$ is {\bf mono} for short) if, for
+					$C\in\mathcal{C}$, $$f_*:\mathcal{C}(C,A)\rightarrow\mathcal{C}(C,B);g\mapsto f\circ g$$
+					is an injection in set theory (i.e. a one-to-one map).
+			\end{definition}
+	\end{frame}
+	
+	
+	\begin{frame}
+			\begin{lemma}
+					For an arrow $f\in \underline{\mathrm{Set}}(A,B)$ (i.e. $f$ is a map between small sets),
+					the following propositions are equivallent:
+							$$f \mbox{ is a mono}.$$
+							$$f \mbox{ is an injection in set theory; i.e. a one-to-one map}.$$
+							
+			\end{lemma}
+	\end{frame}
+
+
+
+	\begin{frame}
+			\begin{lemma}
+					For an arrow $f\in \underline{\mathrm{Top}}((X,\mathcal{O}_X),(Y,\mathcal{O}_Y))$,
+					 the following equivallence holds:
+							$$f \mbox{ is mono}.$$
+							$$f \mbox{ is one-to-one}.$$
+			\end{lemma}
+	\end{frame}
+
+
+
+	\begin{frame}
+			\begin{definition}
+					For a category $\mathcal{C}$ and a morphism $\mathcal{C}(A,B)$,
+					$f$ is called an {\bf epimorphism} (or $f$ is {\bf epi} for short) if, for
+					$C\in\mathcal{C}$, $$f^*:\mathcal{C}(B,C)\rightarrow\mathcal{C}(A,C);g\mapsto g\circ f$$
+					is an injection in set theory (i.e. a one-to-one map).
+			\end{definition}
+	\end{frame}
+
+
+
+	\begin{frame}
+			\begin{lemma}
+					For an arrow $f\in \underline{\mathrm{Top}}((X,\mathcal{O}_X),(Y,\mathcal{O}_Y))$,
+					 the following equivallence holds:
+							$$f \mbox{ is mono}.$$
+							$$f \mbox{ is one-to-one as a mere map or a "mere-conveyer"}.$$
+			\end{lemma}
+	\end{frame}
+	
+	
+	
+	\begin{frame}
+			\begin{definition}
+					For a category $\mathcal{C}$ and a morphism $\mathcal{C}(A,B)$,
+					$f$ is called an {\bf isomorphism} if the following equaiton holds:
+							$${}^\exists g\in\mathcal{C}(B,A),<f\circ_{\mathcal{C}}g=1_B>\wedge<g\circ_{\mathcal{C}}f=1_A>,$$
+					where $g$ is called the {\bf inverse} (or the {\bf two-sided inverse}) of $f$.
+			\end{definition}
+			\begin{proposition}
+					On the previous lemma, $g$ is unique.\\
+					$(\because \mbox{the inverse of a map is unique in set theory}.)$
+			\end{proposition}
+			\begin{attention}
+					An arrow, which is {\bf mono} and {\bf epi}, between categories is {\bf not} an {\bf isomorphism in general}.
+			\end{attention}
+	\end{frame}
+
+
+
+	\begin{frame}
+			\begin{definition}	
+					For objects $A,B$ of a category $\mathcal{C}$,
+					$A$ and $B$ are isomorphic, denoted by $A\cong B$, if we have an isomorphism from $A$ to $B$;
+					i.e. the following equaiton holds:
+							$${}^\exists f\in\mathcal{C}(A,B),
+							^\exists g_f\in\mathcal{C}(B,A),<f\circ_{\mathcal{C}}g_f=1_B>\wedge<g_f\circ_{\mathcal{C}}f=1_A>.$$
+			\end{definition}
+	\end{frame}
+
+
+
+\section{Conclusion at 27 May, 2019}
+	\begin{frame}{Conclusion at 27 May, 2019}
+		\begin{itemize}
+ 			\item the defintion of functors
+					\begin{itemize}
+							\item an arrow between categories, with
+									\begin{itemize}
+											\item identity-equivallence
+											\item operators-equivallence
+									\end{itemize}
+					\end{itemize}
+			\item the examples of functors
+					\begin{itemize}
+							\item the identity functor.
+							\item $f^\sharp=(\underline{\mathrm{Set}},\underline{\mathrm{Set}},
+							(f^\sharp)_0,(f^\sharp)_1)$.
+							\item $f_\sharp=(\underline{\mathrm{Set}},\underline{\mathrm{Set}},
+							(f_\sharp)_0,(f_\sharp)_1)$.
+							\item $\mathcal{O}=(\underline{\mathrm{Top}},\underline{\mathrm{Set}},\mathcal{O}_0,\mathcal{O}_1)$.
+							\item forgetful functors.
+							\item composite functors.
+							\item more other examples (but was raised up)...
+					\end{itemize}
+			 \item a couple of defintions relevant to categories 
+					\begin{itemize}
+							\item mono
+							\item epi
+							\item isomorphisms between categories
+							\item isomorphism between objects in a category
+					\end{itemize}
+
+		\end{itemize}
+	\end{frame}
+
+
+
+
+
+
+
+
+%\begin{frame}{今後の課題}
+%\begin{itemize}
+% \item プログラムの数学的背景の研究．
+% \begin{itemize}
+%\item 圏論の更なる勉強．
+%\begin{itemize}
+%\item{\rm tripleable theorem}．
+%\item$\Omega$代数．
+%\end{itemize}
+%\item 数理論理学
+%\begin{itemize}
+%\item 排中律
+%\item 直観主義論理
+%\end{itemize}
+%\item オートマトンの計算モデルの関係計算式による定式化．
+%\item 関係データベースのデータモデルの関係計算式による定式化．
+% \end{itemize}
+%\item 関係計算のCoqライブラリの実装
+% \begin{itemize}
+%\item Coqによる実装のための基礎の勉強．
+%\item 修士論文でまとめた形式化の{\rm Coq}による実装．
+%\item 関係代数のその他の性質の{\rm Coq}による実装．
+%\item 関係代数の性質の形式証明．
+%\item 関係計算により定式化された実問題の性質の形式証明．
+% \end{itemize}
+%\end{itemize}
+
+
+%\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{参考文献}
+%\begin{frame}[allowframebreaks]{参考文献}
+ %\scriptsize
+ %\bibliographystyle{plain}
+ %\nocite{furusawa2015,maddux1991,demorgan1864,peirce1883}
+ %\bibliography{jsacc2015}
+%\begin{frame}{参考文献}
+
+%{\scriptsize
+%\begin{thebibliography}{99}
+%\setlength{\itemsep}{-.5zw}
+%\beamertemplatetextbibitems
+
+%\bibitem{barr} Michael Barr, {\sl Relational algebra}, Lecture Notes in Math., 
+%137:39-55, 1970．
+
+%\end{thebibliography}
+%}
+
+%\end{frame}
+
+
+
+
+
+
+
+
+
+\end{document}
